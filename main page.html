@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Convergence wiki</title>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #2a2e33; 
+            color: #e0e0e0; 
+            font-family: 'Segoe UI', serif; 
+        }
+
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar-nav {
+            background-color: #010541;
+            width: 250px;
+            padding: 40px 20px;
+            border-right: 1px solid #333;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-nav h1 {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #fff;
+            font-weight: normal;
+            text-transform: none;
+        }
+
+        .sidebar-nav ul { 
+            list-style: none; 
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        .sidebar-nav li { margin-bottom: 15px; }
+
+        .sidebar-nav a {
+            text-decoration: none;
+            color: #888;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .sidebar-nav a:hover { color: #ffffff; }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        
+        <nav class="sidebar-nav">
+            <h1>The Convergence wiki</h1>
+            <ul>
+                <li><a href="classes.html">classes</a></li>
+                
+                <li><a href="spell runes.html">spell runes</a></li>
+                
+                <li><a href="upgrade materials.html">upgrade materials</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <div class="logo-container">
+                <img src="../obrazy/elden ring.png" alt="elden ring.png">
+            </div>
+        </main>
+
+    </div>
+
+</body>
+</html>

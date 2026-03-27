@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Convergence Wiki - Classes</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2a2e33; 
+            color: #e0e0e0;
+            font-family: 'Segoe UI', serif;
+        }
+
+        .wrapper {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #010541;
+            position: fixed; 
+            top: 0;
+            left: 0;
+            padding: 40px 20px;
+            border-right: 1px solid #333;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h1 {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #fff;
+            font-weight: normal;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #888;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover {
+            color: #fff;
+        }
+
+        .nav-item.active {
+            color: #4a90e2;
+            font-weight: bold;
+            pointer-events: none; 
+            cursor: default;
+        }
+
+        .back-button {
+            background-color: transparent;
+            color: #4a90e2;
+            border: 1px solid #4a90e2;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-top: auto;
+        }
+
+        .back-button:hover {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        .main-content {
+            margin-left: 250px; 
+            padding: 40px;
+            flex-grow: 1;
+            min-height: 100vh;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .class-card {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .class-name {
+            color: #4a90e2;
+            font-weight: bold;
+            margin-bottom: 2px;
+            font-size: 0.9rem;
+        }
+
+        .class-stats {
+            font-size: 0.7rem;
+            color: #888888;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .class-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid #333333;
+            background-color: #000; 
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav class="sidebar">
+            <h1>The Convergence wiki</h1>
+            <div class="nav-list">
+                <a href="#" class="nav-item active">classes</a>
+                <a href="spell runes" class="nav-item">spell runes</a>
+                <a href="upgrade materials" class="nav-item">upgrade materials</a>
+            </div>
+            
+            <button class="back-button" onclick="goBack()">Back to Home</button>
+        </nav>
+
+        <main class="main-content">
+            <h2 class="page-title">Classes</h2>
+
+            <div class="classes-grid">
+                <div class="class-card">
+                    <div class="class-name">Retainer</div>
+                    <div class="class-stats">Primary Stats: STR/DEX</div>
+                    <img src="obrazy/knight.png" alt="Retainer" class="class-image">
+                </div>
+
+                <div class="class-card">
+                    <div class="class-name">Vanguard</div>
+                    <div class="class-stats">Primary Stats: STR/DEX</div>
+                    <img src="obrazy/van.png" alt="Vanguard" class="class-image">
+                </div>
+
+                <div class="class-card">
+                    <div class="class-name">Marksman</div>
+                    <div class="class-stats">Primary Stats: STR/DEX</div>
+                    <img src="obrazy/mark.png" alt="Marksman" class="class-image">
+                </div>
+
+                <div class="class-card">
+                    <div class="class-name">Berserker</div>
+                    <div class="class-stats">Primary Stats: STR</div>
+                    <img src="obrazy/zerk.png" alt="Berserker" class="class-image">
+                </div>
+
+                <div class="class-card">
+                    <div class="class-name">Dreadnought</div>
+                    <div class="class-stats">Primary Stats: STR</div>
+                    <img src="obrazy/dred.png" alt="Dreadnought" class="class-image">
+                </div>
+
+                <div class="class-card">
+                    <div class="class-name">Sellsword</div>
+                    <div class="class-stats">Primary Stats: DEX</div>
+                    <img src="obrazy/sellsord.png" alt="Sellsword" class="class-image">
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+                <div class="class-card">
+                    <div class="class-name"></div>
+                    <div class="class-stats">Primary Stats: </div>
+                    <img src="" alt="Sellsword" class="class-image">
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = "main page.html";
+        }
+    </script>
+
+</body>
+</html>
