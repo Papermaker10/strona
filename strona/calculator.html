@@ -2,220 +2,148 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Convergence Wiki - Upgrade Materials</title>
+    <title>The Convergence Wiki - Rune Calculator</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #2a2e33; 
-            color: #e0e0e0;
-            font-family: 'Segoe UI', serif;
-        }
-
-        .wrapper {
-            display: flex;
-        }
-
+        body { margin: 0; background-color: #2a2e33; color: #e0e0e0; font-family: 'Segoe UI', serif; }
+        .wrapper { display: flex; }
+        
         /* SIDEBAR */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #010541;
-            position: fixed; 
-            top: 0;
-            left: 0;
-            padding: 40px 20px;
-            border-right: 1px solid #333;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar h1 {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: #fff;
-            font-weight: normal;
-        }
-
-        .nav-list {
-            list-style: none;
-            padding: 0;
-            flex-grow: 1;
-        }
-
-        .nav-item {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: #888;
-            text-decoration: none;
-            display: block;
-            transition: color 0.3s;
-        }
-
-        .nav-item:hover { color: #fff; }
+        .sidebar { width: 250px; height: 100vh; background-color: #010541; position: fixed; padding: 40px 20px; display: flex; flex-direction: column; box-sizing: border-box; }
+        .nav-list { list-style: none; padding: 0; flex-grow: 1; }
+        .nav-item { margin-bottom: 15px; color: #888; text-decoration: none; display: block; }
         .nav-item.active { color: #4a90e2; font-weight: bold; }
+        
+        /* STYL BACK BUTTON */
+        .back-button { background: transparent; color: #4a90e2; border: 1px solid #4a90e2; padding: 10px; cursor: pointer; margin-top: auto; text-transform: uppercase; }
 
-        .back-button {
-            background-color: transparent;
-            color: #4a90e2;
+        /* MAIN */
+        .main-content { margin-left: 250px; padding: 40px; flex-grow: 1; }
+        
+        .calc-table { width: 100%; max-width: 900px; border-collapse: collapse; background: #1e2124; margin: 0 auto; }
+        .calc-table th { background: #010541; color: #4a90e2; padding: 15px; text-align: left; text-transform: uppercase; font-size: 0.8rem; border-bottom: 2px solid #4a90e2; }
+        .calc-table td { padding: 10px 15px; border-bottom: 1px solid #3d4248; font-size: 0.9rem; }
+
+        .row-total { color: #4a90e2; font-weight: bold; text-align: right; }
+        
+        .summary-box {
+            max-width: 900px;
+            margin: 30px auto;
+            background: #010541;
+            padding: 20px;
             border: 1px solid #4a90e2;
-            padding: 10px;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            margin-top: auto;
-            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
         }
 
-        .main-content {
-            margin-left: 250px; 
-            padding: 40px;
-            flex-grow: 1;
-        }
+        .grand-total { font-size: 2rem; color: white; font-weight: bold; }
+        .label { text-transform: uppercase; letter-spacing: 1px; color: #4a90e2; }
 
-        .page-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-
-        .section-container {
-            margin-bottom: 50px;
-        }
-
-        .section-header {
-            border-bottom: 1px solid #4a90e2;
-            margin-bottom: 20px;
-            color: #4a90e2;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            padding-bottom: 5px;
-        }
-
-        .bell-row {
-            display: flex; /* Ustawia elementy obok siebie */
-            gap: 15px;
-            overflow-x: auto; 
-            padding-bottom: 10px;
-        }
-
-        .bell-card {
-            background-color: #1e2124;
-            border: 1px solid #3d4248;
-            padding: 12px;
-            text-align: center;
-            min-width: 220px; 
-            flex: 0 0 auto; 
-        }
-
-        .bell-name {
-            color: #fff;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 3px;
-        }
-
-        .bell-tier {
-            color: #4a90e2;
-            font-size: 0.8rem;
-            margin-bottom: 8px;
-        }
-
-        .bell-image {
-            width: 100%;
-            height: 130px;
-            background-color: #000;
-            border: 1px solid #333;
-            margin-bottom: 10px;
-            object-fit: cover;
-        }
-
-        .location-text {
-            font-size: 0.7rem;
-            color: #888;
-            margin-bottom: 10px;
-            min-height: 40px;
-            line-height: 1.3;
-        }
-
-        .unlocks-box {
-            border-top: 1px solid #333;
-            padding-top: 8px;
-            font-size: 0.7rem;
-        }
-
-        .unlocks-label { color: #4a90e2; font-style: italic; display: block; }
-        .item-list { color: #fff; font-weight: bold; }
-
+        .category-label { background: #252a30; color: #888; font-weight: bold; font-size: 0.7rem; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <nav class="sidebar">
-            <h1>The Convergence wiki</h1>
-            <div class="nav-list">
-                <a href="classes.html" class="nav-item">classes</a>
-                <a href="#" class="nav-item active">upgrade materials</a>
-                <a href="calculator.html" class="nav-item">calculator</a>
-            </div>
-            <button class="back-button" onclick="window.history.back()">Back to Home</button>
-        </nav>
+<div class="wrapper">
+    <nav class="sidebar">
+        <h1>The Convergence wiki</h1>
+        <div class="nav-list">
+            <a href="classes.html" class="nav-item">Classes</a>
+            <a href="upgrade_materials.html" class="nav-item">Upgrade Materials</a>
+            <a href="#" class="nav-item active">Calculator</a>
+        </div>
+        <button class="back-button" onclick="goBack()">Back</button>
+    </nav>
 
-        <main class="main-content">
-            <h2 class="page-title">Bell Bearings</h2>
+    <main class="main-content">
+        <h2 style="text-align: center; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px;">Rune Cost Calculator</h2>
+        
+        <table class="calc-table">
+            <thead>
+                <tr>
+                    <th>Material Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th style="text-align: right;">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="calcBody">
+            </tbody>
+        </table>
 
-            <div class="section-container">
-                <div class="section-header">Smithing-Stone Miner's Bell Bearings</div>
-                <div class="bell-row">
-                    <div class="bell-card"><div class="bell-name">Smithing-Stone</div><div class="bell-tier">[1]</div><div class="location-text">Raya Lucaria Crystal Tunnels</div><img src="obrazy/1.png" class="bell-image"><div class="unlocks-box"><span class="unlocks-label">Unlocks:</span><span class="item-list">Stone [1], [2]</span></div></div>
-                    <div class="bell-card"><div class="bell-name">Smithing-Stone</div><div class="bell-tier">[2]</div><div class="location-text">Altus: Sealed Tunnel</div><img src="obrazy/2.png" class="bell-image"><div class="unlocks-box"><span class="unlocks-label">Unlocks:</span><span class="item-list">Stone [3], [4]</span></div></div>
-                    <div class="bell-card"><div class="bell-name">Smithing-Stone</div><div class="bell-tier">[3]</div><div class="location-text">Zamor Ruins</div><img src="obrazy/3.png" class="bell-image"><div class="unlocks-box"><span class="unlocks-label">Unlocks:</span><span class="item-list">Stone [5], [6]</span></div></div>
-                    <div class="bell-card"><div class="bell-name">Smithing-Stone</div><div class="bell-tier">[4]</div><div class="location-text">Farum Azula</div><img src="obrazy/4.png" class="bell-image"><div class="unlocks-box"><span class="unlocks-label">Unlocks:</span><span class="item-list">Ancient Stone</span></div></div>
-                </div>
-            </div>
+        <div class="summary-box">
+            <span class="label">Total Runes Required:</span>
+            <span class="grand-total" id="grandTotal">0</span>
+        </div>
+    </main>
+</div>
 
-            <div class="section-container">
-                <div class="section-header">Somber Stone Miner's Bell Bearings</div>
-                <div class="bell-row">
-                    <div class="bell-card"><div class="bell-name">Somber Stone</div><div class="bell-tier">[1]</div><div class="location-text">Sellia Crystal Tunnel</div><img src="obrazy/s1.png" class="bell-image"></div>
-                    <div class="bell-card"><div class="bell-name">Somber Stone</div><div class="bell-tier">[2]</div><div class="location-text">Altus Tunnel</div><img src="obrazy/s2.png" class="bell-image"></div>
-                    <div class="bell-card"><div class="bell-name">Somber Stone</div><div class="bell-tier">[3]</div><div class="location-text">First Church of Marika</div><img src="obrazy/s3.png" class="bell-image"></div>
-                    <div class="bell-card"><div class="bell-name">Somber Stone</div><div class="bell-tier">[4]</div><div class="location-text">Farum Azula Balcony</div><img src="obrazy/s4.png" class="bell-image"></div>
-                    <div class="bell-card"><div class="bell-name">Somber Stone</div><div class="bell-tier">[5]</div><div class="location-text">Dragon Temple Altar</div><img src="obrazy/s5.png" class="bell-image"></div>
-                </div>
-            </div>
+<script>
+    function goBack() {
+        window.location.href = "main page.html";
+    }
 
-            <div class="section-container">
-                <div class="section-header">Shadow Stone Bell Bearings</div>
-                <div class="bell-row">
-                    <div class="bell-card"><div class="bell-name">Shadow Stone</div><div class="bell-tier">[1]</div><div class="location-text">Ruins of Unte</div><img src="obrazy/shadow1.png" class="bell-image"></div>
-                    <div class="bell-card"><div class="bell-name">Shadow Stone</div><div class="bell-tier">[2]</div><div class="location-text">Enir-Ilim</div><img src="obrazy/shadow2.png" class="bell-image"></div>
-                    <div class="bell-card"><div class="bell-name">Shadow Stone</div><div class="bell-tier">[3]</div><div class="location-text">Jagged Peak (Bayle)</div><img src="obrazy/shadow3.png" class="bell-image"></div>
-                </div>
-            </div>
+    const materials = [
+        // STANDARD
+        { name: "Smithing Stone [1]", price: 300, cat: "Standard" },
+        { name: "Smithing Stone [2]", price: 600, cat: "Standard" },
+        { name: "Smithing Stone [3]", price: 1200, cat: "Standard" },
+        { name: "Ancient Smithing Stone", price: 5000, cat: "Standard" },
+        
+        // SOMBER
+        { name: "Somber Stone [1]", price: 1000, cat: "Somber" },
+        { name: "Somber Stone [2]", price: 1500, cat: "Somber" },
+        { name: "Somber Stone [3]", price: 2500, cat: "Somber" },
+        { name: "Somber Stone [4]", price: 5000, cat: "Somber" },
+        { name: "Somber Ancient Stone", price: 7500, cat: "Somber" },
 
-            <div class="section-container">
-                <div class="section-header">Somber Shadow Stone Bell Bearings</div>
-                <div class="bell-row">
-                    <div class="bell-card"><div class="bell-name">Somber Shadow</div><div class="bell-tier">[1]</div><div class="location-text">Shadow Keep</div><img src="obrazy/sombershadow1.png" class="bell-image"></div>
-                    <div class="bell-card"><div class="bell-name">Somber Shadow</div><div class="bell-tier">[2]</div><div class="location-text">Ancient Ruin of Rauh</div><img src="obrazy/sombershadow2.png" class="bell-image"></div>
-                    <div class="bell-card"><div class="bell-name">Somber Shadow</div><div class="bell-tier">[3]</div><div class="location-text">Enir-Ilim (Champions)</div><img src="obrazy/sombershadow3.png" class="bell-image"></div>
-                </div>
-            </div>
+        // SHADOW
+        { name: "Shadow Stone [1]", price: 5000, cat: "Shadow" },
+        { name: "Large Shadow Stone", price: 7500, cat: "Shadow" },
+        { name: "Great Shadow Stone", price: 8500, cat: "Shadow" },
+        { name: "Monstrous Shadow Stone", price: 9000, cat: "Shadow" },
+        { name: "Primordial Shadow Stone", price: 10000, cat: "Shadow" },
 
-        </main>
-    </div>
+        // SOMBER SHADOW
+        { name: "Somber Shadow Stone", price: 7500, cat: "Somber Shadow" },
+        { name: "Large Somber Shadow Stone", price: 9000, cat: "Somber Shadow" },
+        { name: "Monstrous Somber Shadow Stone", price: 11500, cat: "Somber Shadow" },
+        { name: "Primordial Somber Shadow Stone", price: 12500, cat: "Somber Shadow" }
+    ];
 
-        <script>
-        function goBack() {
-            window.location.href = "main page.html";
+    const tbody = document.getElementById('calcBody');
+    let currentCat = "";
+
+    materials.forEach((m, index) => {
+        if (m.cat !== currentCat) {
+            currentCat = m.cat;
+            const catRow = document.createElement('tr');
+            catRow.innerHTML = `<td colspan="4" class="category-label">${currentCat} Materials</td>`;
+            tbody.appendChild(catRow);
         }
-    </script>
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${m.name}</td>
+            <td style="color: #666;">${m.price.toLocaleString()}</td>
+            <td><input type="number" id="input-${index}" class="item-input" placeholder="0" oninput="updateTotal()"></td>
+            <td class="row-total" id="total-${index}">0</td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    function updateTotal() {
+        let grandTotal = 0;
+        materials.forEach((m, index) => {
+            const qty = document.getElementById(`input-${index}`).value || 0;
+            const cost = qty * m.price;
+            document.getElementById(`total-${index}`).innerText = cost.toLocaleString();
+            grandTotal += cost;
+        });
+        document.getElementById('grandTotal').innerText = grandTotal.toLocaleString();
+    }
+</script>
 
 </body>
 </html>
